@@ -1,45 +1,66 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  #app {
-    margin: 20px auto;
-    max-width: 400px;
-  }
-  
-  input[type="text"] {
-    width: 70%;
-    padding: 10px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 10px 0;
-    text-align: left;
-  }
-  
-  .delete-btn {
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+#app {
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  text-align: left;
+  position: relative;
+}
+
+.completed {
+  background-color: #c0f0c0;
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tick-btn {
+  background-color: #33cc33;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
