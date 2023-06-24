@@ -12,19 +12,6 @@ h1 {
   max-width: 400px;
 }
 
-input[type="text"] {
-  width: 70%;
-  padding: 10px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
 ul {
   list-style-type: none;
   padding: 0;
@@ -34,33 +21,81 @@ li {
   margin: 10px 0;
   text-align: left;
   position: relative;
+  background-color: rgba(0, 150, 255, 0.3);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .completed {
-  background-color: #c0f0c0;
+  background-color: rgba(0, 255, 0, 0.3);
   text-decoration: line-through;
+}
+
+.deleted {
+  text-decoration: line-through;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.input-container input[type="text"],
+.input-container button {
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 .delete-btn {
   background-color: #ff0000;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 5px;
   cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .tick-btn {
   background-color: #33cc33;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 5px;
   cursor: pointer;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
 }

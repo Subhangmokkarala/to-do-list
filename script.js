@@ -12,20 +12,41 @@ function addTask() {
 
   var deleteBtn = document.createElement('button');
   deleteBtn.className = 'delete-btn';
-  deleteBtn.textContent = 'Delete';
+  deleteBtn.innerHTML = 'X';
   deleteBtn.addEventListener('click', function() {
-    taskList.removeChild(li);
+    li.classList.toggle('deleted');
+    if (li.classList.contains('deleted')) {
+      deleteBtn.innerHTML = '♻️';
+    } else {
+      deleteBtn.innerHTML = 'X';
+    }
   });
 
   var tickBtn = document.createElement('button');
   tickBtn.className = 'tick-btn';
-  tickBtn.textContent = '✔';
+  tickBtn.innerHTML = '&#10004;';
   tickBtn.addEventListener('click', function() {
     li.classList.toggle('completed');
   });
 
-  li.appendChild(tickBtn);
-  li.appendChild(deleteBtn);
+  var restoreBtn = document.createElement('button');
+  restoreBtn.className = 'restore-btn';
+  restoreBtn.innerHTML = '♻️';
+  restoreBtn.addEventListener('click', function() {
+    li.classList.remove('deleted');
+    deleteBtn.innerHTML = 'X';
+  });
+
+  var buttonsContainer = document.createElement('div');
+  buttonsContainer.className = 'buttons-container';
+  buttonsContainer.appendChild(tickBtn);
+  buttonsContainer.appendChild(deleteBtn);
+
+  if (li.classList.contains('deleted')) {
+    buttonsContainer.appendChild(restoreBtn);
+  }
+
+  li.appendChild(buttonsContainer);
   taskList.appendChild(li);
 
   input.value = '';
