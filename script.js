@@ -5,7 +5,31 @@ function addTask() {
     alert('Please enter a task.');
     return;
   }
-
+  function exportTasks() {
+    var taskList = document.getElementById('taskList');
+    var tasks = taskList.getElementsByTagName('li');
+  
+    if (tasks.length === 0) {
+      alert('No tasks to export.');
+      return;
+    }
+  
+    var csvContent = 'data:text/csv;charset=utf-8,';
+    csvContent += 'Task\n';
+  
+    for (var i = 0; i < tasks.length; i++) {
+      var taskText = tasks[i].textContent.replace(/,/g, ''); // Remove commas from task text
+      csvContent += '"' + taskText + '"\n';
+    }
+  
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'tasks.csv');
+    document.body.appendChild(link); // Required for Firefox
+    link.click();
+    document.body.removeChild(link);
+  }
   var taskList = document.getElementById('taskList');
   var li = document.createElement('li');
   li.textContent = task;
