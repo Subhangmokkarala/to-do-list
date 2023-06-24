@@ -99,24 +99,8 @@ function displayNoTasksMessage(show) {
   var messageContainer = document.getElementById('noTasksMessage');
 
   if (show) {
-    // Create message and image elements
-    var messageText = document.createElement('p');
-    messageText.textContent = "Seems like you are free today";
-    var image = document.createElement('img');
-    image.src = 'path/to/your/image.png';
-    image.alt = 'No tasks image';
-
-    // Append elements to the message container
-    messageContainer.appendChild(messageText);
-    messageContainer.appendChild(image);
-
-    // Show the message container
     messageContainer.style.display = 'block';
   } else {
-    // Hide the message container
     messageContainer.style.display = 'none';
-
-    // Clear any existing message and image elements
-    messageContainer.innerHTML = '';
   }
 }
