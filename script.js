@@ -26,7 +26,13 @@ function addTask() {
   tickBtn.className = 'tick-btn';
   tickBtn.innerHTML = '&#10004;';
   tickBtn.addEventListener('click', function() {
-    li.classList.toggle('completed');
+    if (li.classList.contains('deleted')) {
+      // Permanent delete
+      li.remove();
+    } else {
+      // Toggle completion
+      li.classList.toggle('completed');
+    }
   });
 
   var restoreBtn = document.createElement('button');
