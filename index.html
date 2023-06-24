@@ -7,10 +7,12 @@
 <body>
   <h1>To-Do List</h1>
   <div id="app">
+    <div id="noTasksMessage" style="display: none;"></div> <!-- Container for the message -->
     <ul id="taskList"></ul>
     <div class="input-container">
       <input type="text" id="taskInput" placeholder="Enter a task">
       <button onclick="addTask()">Add</button>
+      <button onclick="exportTasks()">Export</button>
     </div>
   </div>
 
