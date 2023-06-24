@@ -18,6 +18,8 @@ Features 🌟⭐✨🌟⭐✨
 
 ✅able to export tasks as csv
 
+✅added search bar
+
 ☑️will add task date and time
 
 ☑️dark mode
