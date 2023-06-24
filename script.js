@@ -1,3 +1,19 @@
+// Function to retrieve tasks from localStorage
+function retrieveTasks() {
+  var tasks = localStorage.getItem('tasks');
+  if (tasks) {
+    return JSON.parse(tasks);
+  } else {
+    return [];
+  }
+}
+
+// Function to save tasks to localStorage
+function saveTasks(tasks) {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Function to add a new task to the list
 function addTask() {
   var input = document.getElementById('taskInput');
   var task = input.value;
@@ -6,115 +22,117 @@ function addTask() {
     return;
   }
 
-  var taskList = document.getElementById('taskList');
-  var li = document.createElement('li');
-  li.textContent = task;
+  var tasks = retrieveTasks();
 
-  var deleteBtn = document.createElement('button');
-  deleteBtn.className = 'delete-btn';
-  deleteBtn.innerHTML = 'X';
-  deleteBtn.addEventListener('click', function() {
-    li.classList.toggle('deleted');
-    if (li.classList.contains('deleted')) {
-      deleteBtn.innerHTML = '♻️';
-    } else {
-      deleteBtn.innerHTML = 'X';
-    }
-  });
+  // Create a new task object
+  var newTask = {
+    id: Date.now(),
+    task: task,
+    completed: false
+  };
 
-  var tickBtn = document.createElement('button');
-  tickBtn.className = 'tick-btn';
-  tickBtn.innerHTML = '&#10004;';
-  tickBtn.addEventListener('click', function() {
-    if (li.classList.contains('deleted')) {
-      // Permanent delete
-      li.remove();
-    } else {
-      // Toggle completion
-      li.classList.toggle('completed');
-    }
-  });
+  // Add the task to the tasks array
+  tasks.push(newTask);
 
-  var restoreBtn = document.createElement('button');
-  restoreBtn.className = 'restore-btn';
-  restoreBtn.innerHTML = '♻️';
-  restoreBtn.addEventListener('click', function() {
-    li.classList.remove('deleted');
-    deleteBtn.innerHTML = 'X';
-  });
+  // Save the updated tasks to localStorage
+  saveTasks(tasks);
 
-  var buttonsContainer = document.createElement('div');
-  buttonsContainer.className = 'buttons-container';
-  buttonsContainer.appendChild(tickBtn);
-  buttonsContainer.appendChild(deleteBtn);
-
-  if (li.classList.contains('deleted')) {
-    buttonsContainer.appendChild(restoreBtn);
-  }
-
-  li.appendChild(buttonsContainer);
-  taskList.appendChild(li);
+  // Display the tasks
+  displayTasks();
 
   input.value = '';
+}
 
-  // Check if there are no tasks
-  if (taskList.children.length === 0) {
-    displayNoTasksMessage(true);
-  } else {
-    displayNoTasksMessage(false);
+// Function to delete a task from the list
+function deleteTask(taskId) {
+  var tasks = retrieveTasks();
+
+  // Find the task with the specified ID
+  var taskIndex = tasks.findIndex(function(task) {
+    return task.id === taskId;
+  });
+
+  if (taskIndex !== -1) {
+    // Remove the task from the tasks array
+    tasks.splice(taskIndex, 1);
+
+    // Save the updated tasks to localStorage
+    saveTasks(tasks);
+
+    // Display the tasks
+    displayTasks();
   }
 }
 
-function exportTasks() {
+// Function to toggle the completion status of a task
+function toggleTaskCompletion(taskId) {
+  var tasks = retrieveTasks();
+
+  // Find the task with the specified ID
+  var task = tasks.find(function(task) {
+    return task.id === taskId;
+  });
+
+  if (task) {
+    // Toggle the completed property of the task
+    task.completed = !task.completed;
+
+    // Save the updated tasks to localStorage
+    saveTasks(tasks);
+
+    // Display the tasks
+    displayTasks();
+  }
+}
+
+// Function to display the tasks
+function displayTasks() {
   var taskList = document.getElementById('taskList');
-  var tasks = taskList.getElementsByTagName('li');
+  taskList.innerHTML = '';
+
+  var tasks = retrieveTasks();
 
   if (tasks.length === 0) {
-    alert('No tasks to export.');
-    return;
-  }
-
-  var csvContent = 'data:text/csv;charset=utf-8,';
-  var rows = [];
-
-  for (var i = 0; i < tasks.length; i++) {
-    var taskText = tasks[i].textContent.replace(/,/g, ''); // Remove commas from task text
-    rows.push('"' + taskText + '"');
-  }
-
-  csvContent += rows.join('\n');
-
-  var encodedUri = encodeURI(csvContent);
-  var link = document.createElement('a');
-  link.setAttribute('href', encodedUri);
-  link.setAttribute('download', 'tasks.csv');
-  link.style.display = 'none';
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function displayNoTasksMessage(show) {
-  var messageContainer = document.getElementById('noTasksMessage');
-
-  if (show) {
-    messageContainer.style.display = 'block';
+    taskList.innerHTML = 'No tasks found.';
   } else {
-    messageContainer.style.display = 'none';
+    for (var i = 0; i < tasks.length; i++) {
+      var task = tasks[i];
+
+      var li = document.createElement('li');
+      li.textContent = task.task;
+
+      if (task.completed) {
+        li.classList.add('completed');
+      }
+
+      var deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.innerHTML = 'X';
+      deleteBtn.addEventListener('click', function() {
+        var taskId = parseInt(this.dataset.taskId);
+        deleteTask(taskId);
+      });
+      deleteBtn.dataset.taskId = task.id;
+
+      var tickBtn = document.createElement('button');
+      tickBtn.className = 'tick-btn';
+      tickBtn.innerHTML = '&#10004;';
+      tickBtn.addEventListener('click', function() {
+        var taskId = parseInt(this.dataset.taskId);
+        toggleTaskCompletion(taskId);
+      });
+      tickBtn.dataset.taskId = task.id;
+
+      var buttonsContainer = document.createElement('div');
+      buttonsContainer.className = 'buttons-container';
+      buttonsContainer.appendChild(tickBtn);
+      buttonsContainer.appendChild(deleteBtn);
+
+      li.appendChild(buttonsContainer);
+      taskList.appendChild(li);
+    }
   }
 }
-function searchTasks() {
-  var input = document.getElementById('searchInput');
-  var searchTerm = input.value.toLowerCase();
-  var tasks = document.querySelectorAll('#taskList li');
 
-  tasks.forEach(function(task) {
-    var taskText = task.textContent.toLowerCase();
-    if (taskText.includes(searchTerm)) {
-      task.style.display = 'block';
-    } else {
-      task.style.display = 'none';
-    }
-  });
-}
+// Display the tasks when the page loads
+displayTasks();
