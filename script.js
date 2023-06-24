@@ -56,6 +56,69 @@ function addTask() {
   taskList.appendChild(li);
 
   input.value = '';
+
+  // Check if there are no tasks
+  if (taskList.children.length === 0) {
+    displayNoTasksMessage(true);
+  } else {
+    displayNoTasksMessage(false);
+  }
+}
+
+function exportTasks() {
+  var taskList = document.getElementById('taskList');
+  var tasks = taskList.getElementsByTagName('li');
+
+  if (tasks.length === 0) {
+    alert('No tasks to export.');
+    return;
+  }
+
+  var csvContent = 'data:text/csv;charset=utf-8,';
+  var rows = [];
+
+  for (var i = 0; i < tasks.length; i++) {
+    var taskText = tasks[i].textContent.replace(/,/g, ''); // Remove commas from task text
+    rows.push('"' + taskText + '"');
+  }
+
+  csvContent += rows.join('\n');
+
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'tasks.csv');
+  link.style.display = 'none';
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function displayNoTasksMessage(show) {
+  var messageContainer = document.getElementById('noTasksMessage');
+
+  if (show) {
+    // Create message and image elements
+    var messageText = document.createElement('p');
+    messageText.textContent = "Seems like you are free today";
+    var image = document.createElement('img');
+    image.src = 'path/to/your/image.png';
+    image.alt = 'No tasks image';
+
+    // Append elements to the message container
+    messageContainer.appendChild(messageText);
+    messageContainer.appendChild(image);
+
+    // Show the message container
+    messageContainer.style.display = 'block';
+  } else {
+    // Hide the message container
+    messageContainer.style.display = 'none';
+
+    // Clear any existing message and image elements
+    messageContainer.innerHTML = '';
+  }
 }
 
 function exportTasks() {
