@@ -26,8 +26,10 @@ function addTask() {
     li.classList.toggle('deleted');
     if (li.classList.contains('deleted')) {
       deleteBtn.innerHTML = '♻️';
+      tickBtn.classList.add('deleted');
     } else {
       deleteBtn.innerHTML = 'X';
+      tickBtn.classList.remove('deleted');
     }
     updateTasksInLocalStorage();
   });
@@ -52,6 +54,7 @@ function addTask() {
   restoreBtn.addEventListener('click', function() {
     li.classList.remove('deleted');
     deleteBtn.innerHTML = 'X';
+    tickBtn.classList.remove('deleted');
     updateTasksInLocalStorage();
   });
 
@@ -62,6 +65,7 @@ function addTask() {
 
   if (li.classList.contains('deleted')) {
     buttonsContainer.appendChild(restoreBtn);
+    tickBtn.classList.add('deleted');
   }
 
   li.appendChild(buttonsContainer);
@@ -112,8 +116,10 @@ function displayTasksFromLocalStorage() {
       li.classList.toggle('deleted');
       if (li.classList.contains('deleted')) {
         deleteBtn.innerHTML = '♻️';
+        tickBtn.classList.add('deleted');
       } else {
         deleteBtn.innerHTML = 'X';
+        tickBtn.classList.remove('deleted');
       }
       updateTasksInLocalStorage();
     });
@@ -138,6 +144,7 @@ function displayTasksFromLocalStorage() {
     restoreBtn.addEventListener('click', function() {
       li.classList.remove('deleted');
       deleteBtn.innerHTML = 'X';
+      tickBtn.classList.remove('deleted');
       updateTasksInLocalStorage();
     });
 
@@ -148,6 +155,7 @@ function displayTasksFromLocalStorage() {
 
     if (li.classList.contains('deleted')) {
       buttonsContainer.appendChild(restoreBtn);
+      tickBtn.classList.add('deleted');
     }
 
     li.appendChild(buttonsContainer);
