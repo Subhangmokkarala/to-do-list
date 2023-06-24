@@ -104,3 +104,17 @@ function displayNoTasksMessage(show) {
     messageContainer.style.display = 'none';
   }
 }
+function searchTasks() {
+  var input = document.getElementById('searchInput');
+  var searchTerm = input.value.toLowerCase();
+  var tasks = document.querySelectorAll('#taskList li');
+
+  tasks.forEach(function(task) {
+    var taskText = task.textContent.toLowerCase();
+    if (taskText.includes(searchTerm)) {
+      task.style.display = 'block';
+    } else {
+      task.style.display = 'none';
+    }
+  });
+}

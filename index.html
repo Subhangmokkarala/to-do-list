@@ -11,12 +11,13 @@
       <p>Seems like you are free today.</p>
       <img src="https://www.transparentpng.com/thumb/smiley/okey-sign-smiley-emoji-free-transparent-EEkKTT.png" alt="No tasks image">
     </div>
-    <ul id="taskList"></ul>
     <div class="input-container">
       <input type="text" id="taskInput" placeholder="Enter a task">
       <button onclick="addTask()">Add</button>
+      <input type="text" id="searchInput" placeholder="Search tasks" oninput="searchTasks()">
       <button onclick="exportTasks()">Export</button>
     </div>
+    <ul id="taskList"></ul>
   </div>
 
   <script src="script.js"></script>
