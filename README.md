@@ -9,12 +9,21 @@ interested people can suggest some features and changes and can contribute to th
 Features 🌟⭐✨🌟⭐✨
 
 ✅Able to add task
+
 ✅Able complete task
+
 ✅able to delete task
+
 ✅able to restore if deleted
+
 ☑️will add task date and time
+
 ☑️dark mode
+
 ☑️rich ui
+
 ☑️able to sync to cloud
+
 ☑️user login and logout
+
 ☑️animation
