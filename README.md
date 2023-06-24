@@ -16,6 +16,8 @@ Features 🌟⭐✨🌟⭐✨
 
 ✅able to restore if deleted
 
+✅able to export tasks as csv
+
 ☑️will add task date and time
 
 ☑️dark mode
@@ -26,4 +28,4 @@ Features 🌟⭐✨🌟⭐✨
 
 ☑️user login and logout
 
-☑️animation
+☑️animations
