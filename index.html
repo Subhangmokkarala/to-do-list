@@ -7,12 +7,15 @@
 <body>
   <h1>To-Do List</h1>
   <div id="app">
+    <div id="noTasksMessage" style="display: none;">
+      <p id="messageText"></p>
+      <img id="noTasksImage" src="https://www.transparentpng.com/thumb/smiley/okey-sign-smiley-emoji-free-transparent-EEkKTT.png" alt="No tasks image">
+    </div>
     <ul id="taskList"></ul>
     <div class="input-container">
       <input type="text" id="taskInput" placeholder="Enter a task">
       <button onclick="addTask()">Add</button>
-      <button onclick="exportTasks()">Export as CSV</button>
-
+      <button onclick="exportTasks()">Export</button>
     </div>
   </div>
 

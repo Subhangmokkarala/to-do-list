@@ -56,6 +56,13 @@ function addTask() {
   taskList.appendChild(li);
 
   input.value = '';
+
+  // Check if there are no tasks
+  if (taskList.children.length === 0) {
+    displayNoTasksMessage(true);
+  } else {
+    displayNoTasksMessage(false);
+  }
 }
 
 function exportTasks() {
@@ -86,4 +93,30 @@ function exportTasks() {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+function displayNoTasksMessage(show) {
+  var messageContainer = document.getElementById('noTasksMessage');
+
+  if (show) {
+    // Create message and image elements
+    var messageText = document.createElement('p');
+    messageText.textContent = "Seems like you are free today";
+    var image = document.createElement('img');
+    image.src = 'path/to/your/image.png';
+    image.alt = 'No tasks image';
+
+    // Append elements to the message container
+    messageContainer.appendChild(messageText);
+    messageContainer.appendChild(image);
+
+    // Show the message container
+    messageContainer.style.display = 'block';
+  } else {
+    // Hide the message container
+    messageContainer.style.display = 'none';
+
+    // Clear any existing message and image elements
+    messageContainer.innerHTML = '';
+  }
 }
