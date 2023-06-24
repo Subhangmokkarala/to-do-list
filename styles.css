@@ -98,6 +98,10 @@ button {
   font-weight: bold;
 }
 
+.deleted .tick-btn {
+  color: white;
+}
+
 .buttons-container {
   display: flex;
   align-items: center;
