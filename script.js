@@ -15,18 +15,22 @@ function addTask() {
     }
   
     var csvContent = 'data:text/csv;charset=utf-8,';
-    csvContent += 'Task\n';
+    var rows = [];
   
     for (var i = 0; i < tasks.length; i++) {
       var taskText = tasks[i].textContent.replace(/,/g, ''); // Remove commas from task text
-      csvContent += '"' + taskText + '"\n';
+      rows.push('"' + taskText + '"');
     }
+  
+    csvContent += rows.join('\n');
   
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement('a');
     link.setAttribute('href', encodedUri);
     link.setAttribute('download', 'tasks.csv');
-    document.body.appendChild(link); // Required for Firefox
+    link.style.display = 'none';
+  
+    document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   }
