@@ -22,9 +22,9 @@ Features 🌟⭐✨🌟⭐✨
 
 ☑️will add task date and time
 
-☑️dark mode
+✅dark mode
 
-☑️rich ui
+✅rich ui
 
 ☑️able to sync to cloud
 

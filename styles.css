@@ -1,16 +1,28 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: aqua;
+  background-color: #f3f3f3;
+  background-image: url("https://wallpaperaccess.com/full/1803337.jpg");
+  color: #333;
 }
 
+#noTasksMessage img {
+  width: 200px; /* Adjust the width as desired */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+
 h1 {
-  color: #333;
+  color: #dce30f;
 }
 
 #app {
   margin: 20px auto;
   max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 ul {
@@ -22,21 +34,25 @@ li {
   margin: 10px 0;
   text-align: left;
   position: relative;
-  background-color: rgba(0, 150, 255, 0.3);
+  background-color: #f8f8f8;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
 }
 
+li:hover {
+  background-color: #eaeaea;
+}
+
 .completed {
-  background-color: rgba(0, 255, 0, 0.3);
+  background-color: #e1f7d5;
   text-decoration: line-through;
 }
 
 .deleted {
   text-decoration: line-through;
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: #f7d5d5;
 }
 
 .input-container {
@@ -47,7 +63,10 @@ li {
   margin-top: 20px;
 }
 
-.input-container input[type="text"],
+.input-container input[type="text"]
+{
+  background-image: url("https://i0.wp.com/aapkapainter.com/blog/wp-content/uploads/2017/04/alternative.jpg?fit=640%2C360&ssl=1");
+}
 .input-container button {
   margin-top: 10px;
 }
@@ -55,6 +74,9 @@ li {
 input[type="text"] {
   width: 70%;
   padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -68,7 +90,7 @@ button {
 }
 
 .delete-btn {
-  background-color: #ff0000;
+  background-color: #ff5555;
   color: #fff;
   border: none;
   padding: 5px;
@@ -84,7 +106,7 @@ button {
 }
 
 .tick-btn {
-  background-color: #33cc33;
+  background-color: #55cc55;
   color: #fff;
   border: none;
   padding: 5px;

@@ -1,3 +1,9 @@
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("dark-mode");
+  const modeToggle = document.querySelector('.mode-toggle');
+  modeToggle.textContent = body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+}
 function saveTasksToLocalStorage(tasks) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
