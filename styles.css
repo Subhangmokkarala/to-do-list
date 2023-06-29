@@ -1,7 +1,9 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: aqua;
+  background-color: #f3f3f3;
+  background-image: url("https://wallpaperaccess.com/full/1803337.jpg");
+  color: #333;
 }
 
 h1 {
@@ -11,6 +13,10 @@ h1 {
 #app {
   margin: 20px auto;
   max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 ul {
@@ -22,21 +28,25 @@ li {
   margin: 10px 0;
   text-align: left;
   position: relative;
-  background-color: rgba(0, 150, 255, 0.3);
+  background-color: #f8f8f8;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
 }
 
+li:hover {
+  background-color: #eaeaea;
+}
+
 .completed {
-  background-color: rgba(0, 255, 0, 0.3);
+  background-color: #e1f7d5;
   text-decoration: line-through;
 }
 
 .deleted {
   text-decoration: line-through;
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: #f7d5d5;
 }
 
 .input-container {
@@ -47,7 +57,10 @@ li {
   margin-top: 20px;
 }
 
-.input-container input[type="text"],
+.input-container input[type="text"] {
+  background-image: url("https://img.freepik.com/premium-vector/seamless-vector-pattern-technique-beige-background-contour-icons-laptop-monitor-phone-smart-watch_456605-129.jpg");
+}
+
 .input-container button {
   margin-top: 10px;
 }
@@ -55,6 +68,9 @@ li {
 input[type="text"] {
   width: 70%;
   padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -65,40 +81,38 @@ button {
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.delete-btn {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  font-weight: bold;
+button:hover {
+  background-color: #555;
 }
 
-.tick-btn {
-  background-color: #33cc33;
-  color: #fff;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
+.mode-toggle {
+  background-color: #555;
+}
+
+.hidden {
+  display: none;
+}
+
+#noTasksMessage {
+  margin-top: 20px;
+}
+
+#noTasksMessage p {
+  margin-bottom: 10px;
+}
+
+#noTasksMessage img {
+  width: 200px;
+  height: auto;
 }
 
 .buttons-container {
-  display: flex;
-  align-items: center;
+  margin-left: auto;
+}
+
+.buttons-container button {
+  margin-left: 5px;
 }
