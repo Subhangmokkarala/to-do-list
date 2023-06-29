@@ -20,6 +20,8 @@ Features 🌟⭐✨🌟⭐✨
 
 ✅added search bar
 
+✅added local storage support so even if you refresh webpage it'll not delete tasks
+
 ☑️will add task date and time
 
 ✅dark mode
