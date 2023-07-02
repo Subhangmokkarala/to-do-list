@@ -160,6 +160,7 @@ function displayTasksFromLocalStorage() {
     buttonsContainer.appendChild(tickBtn);
     buttonsContainer.appendChild(deleteBtn);
 
+
     if (li.classList.contains('deleted')) {
       buttonsContainer.appendChild(restoreBtn);
       tickBtn.classList.add('deleted');
@@ -183,6 +184,7 @@ function displayNoTasksMessage(show) {
     noTasksMessage.classList.remove('hidden');
   } else {
     noTasksMessage.classList.add('hidden');
+
   }
 }
 
@@ -223,6 +225,7 @@ function exportTasks() {
   downloadLink.click();
   document.body.removeChild(downloadLink);
 }
+
 
 // Check if there are no tasks initially
 displayNoTasksMessage(true);

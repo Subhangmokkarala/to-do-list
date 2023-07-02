@@ -6,8 +6,9 @@ body {
   color: #333;
 }
 
+
 h1 {
-  color: #333;
+  color: #dce30f;
 }
 
 #app {
@@ -57,8 +58,10 @@ li:hover {
   margin-top: 20px;
 }
 
-.input-container input[type="text"] {
-  background-image: url("https://img.freepik.com/premium-vector/seamless-vector-pattern-technique-beige-background-contour-icons-laptop-monitor-phone-smart-watch_456605-129.jpg");
+
+.input-container input[type="text"]
+{
+  background-image: url("https://i0.wp.com/aapkapainter.com/blog/wp-content/uploads/2017/04/alternative.jpg?fit=640%2C360&ssl=1");
 }
 
 .input-container button {
@@ -84,6 +87,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
+
 button:hover {
   background-color: #555;
 }
@@ -107,6 +111,11 @@ button:hover {
 #noTasksMessage img {
   width: 200px;
   height: auto;
+
+}
+
+.deleted .tick-btn {
+  color: white;
 }
 
 .buttons-container {
