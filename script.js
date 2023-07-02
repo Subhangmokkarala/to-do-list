@@ -4,6 +4,7 @@ function toggleDarkMode() {
   const modeToggle = document.querySelector('.mode-toggle');
   modeToggle.textContent = body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
 }
+
 function saveTasksToLocalStorage(tasks) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -159,6 +160,7 @@ function displayTasksFromLocalStorage() {
     buttonsContainer.appendChild(tickBtn);
     buttonsContainer.appendChild(deleteBtn);
 
+
     if (li.classList.contains('deleted')) {
       buttonsContainer.appendChild(restoreBtn);
       tickBtn.classList.add('deleted');
@@ -176,70 +178,57 @@ function displayTasksFromLocalStorage() {
   }
 }
 
-function exportTasks() {
-  var taskList = document.getElementById('taskList');
-  var tasks = taskList.getElementsByTagName('li');
+function displayNoTasksMessage(show) {
+  var noTasksMessage = document.getElementById('noTasksMessage');
+  if (show) {
+    noTasksMessage.classList.remove('hidden');
+  } else {
+    noTasksMessage.classList.add('hidden');
 
-  if (tasks.length === 0) {
-    alert('No tasks to export.');
-    return;
   }
-
-  var csvContent = 'data:text/csv;charset=utf-8,';
-  var rows = [];
-
-  for (var i = 0; i < tasks.length; i++) {
-    var taskText = tasks[i].textContent.replace(/,/g, ''); // Remove commas from task text
-    rows.push('"' + taskText + '"');
-  }
-
-  csvContent += rows.join('\n');
-
-  var encodedUri = encodeURI(csvContent);
-  var link = document.createElement('a');
-  link.setAttribute('href', encodedUri);
-  link.setAttribute('download', 'tasks.csv');
-  link.style.display = 'none';
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 }
 
 function searchTasks() {
-  var input = document.getElementById('searchInput');
-  var searchTerm = input.value.toLowerCase();
-  var tasks = document.querySelectorAll('#taskList li');
+  var searchInput = document.getElementById('searchInput');
+  var filter = searchInput.value.toUpperCase();
+  var taskList = document.getElementById('taskList');
+  var tasks = taskList.getElementsByTagName('li');
 
-  tasks.forEach(function(task) {
-    var taskText = task.textContent.toLowerCase();
-    if (taskText.includes(searchTerm)) {
-      task.style.display = 'block';
+  for (var i = 0; i < tasks.length; i++) {
+    var task = tasks[i];
+    var taskText = task.textContent || task.innerText;
+    if (taskText.toUpperCase().indexOf(filter) > -1) {
+      task.style.display = '';
     } else {
       task.style.display = 'none';
     }
-  });
-}
-
-function displayNoTasksMessage(show) {
-  var messageContainer = document.getElementById('noTasksMessage');
-
-  if (show) {
-    messageContainer.style.display = 'block';
-  } else {
-    messageContainer.style.display = 'none';
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  displayTasksFromLocalStorage();
+function exportTasks() {
+  var tasks = [];
+  var taskList = document.getElementById('taskList');
+  var tasksElements = taskList.getElementsByTagName('li');
 
-  var addTaskButton = document.getElementById('addTaskButton');
-  addTaskButton.addEventListener('click', addTask);
+  for (var i = 0; i < tasksElements.length; i++) {
+    var taskText = tasksElements[i].textContent;
+    tasks.push(taskText);
+  }
 
-  var exportButton = document.getElementById('exportButton');
-  exportButton.addEventListener('click', exportTasks);
+  var tasksString = tasks.join('\n');
 
-  var searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', searchTasks);
-});
+  var downloadLink = document.createElement('a');
+  downloadLink.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(tasksString);
+  downloadLink.download = 'tasks.txt';
+  downloadLink.style.display = 'none';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
+
+// Check if there are no tasks initially
+displayNoTasksMessage(true);
+
+// Display tasks from local storage
+displayTasksFromLocalStorage();

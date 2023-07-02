@@ -6,11 +6,6 @@ body {
   color: #333;
 }
 
-#noTasksMessage img {
-  width: 200px; /* Adjust the width as desired */
-  height: auto; /* Maintain the aspect ratio */
-}
-
 
 h1 {
   color: #dce30f;
@@ -63,10 +58,12 @@ li:hover {
   margin-top: 20px;
 }
 
+
 .input-container input[type="text"]
 {
   background-image: url("https://i0.wp.com/aapkapainter.com/blog/wp-content/uploads/2017/04/alternative.jpg?fit=640%2C360&ssl=1");
 }
+
 .input-container button {
   margin-top: 10px;
 }
@@ -87,37 +84,34 @@ button {
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.delete-btn {
-  background-color: #ff5555;
-  color: #fff;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  font-weight: bold;
+
+button:hover {
+  background-color: #555;
 }
 
-.tick-btn {
-  background-color: #55cc55;
-  color: #fff;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
+.mode-toggle {
+  background-color: #555;
+}
+
+.hidden {
+  display: none;
+}
+
+#noTasksMessage {
+  margin-top: 20px;
+}
+
+#noTasksMessage p {
+  margin-bottom: 10px;
+}
+
+#noTasksMessage img {
+  width: 200px;
+  height: auto;
+
 }
 
 .deleted .tick-btn {
@@ -125,6 +119,9 @@ button {
 }
 
 .buttons-container {
-  display: flex;
-  align-items: center;
+  margin-left: auto;
+}
+
+.buttons-container button {
+  margin-left: 5px;
 }
